@@ -68,7 +68,10 @@
 						break;
 				}
 				
-				slideSet = slideSet+'<li class="slide-'+thisSlide+'"></li>';
+				if (base.options.slides[thisSlide].fit_always)
+					slideSet = slideSet+'<li class="slide-'+thisSlide+' fit_always"></li>';
+				else
+					slideSet = slideSet+'<li class="slide-'+thisSlide+'"></li>';
 				
 				if(thisSlide == base.options.start_slide-1){
 					// Slide links
@@ -320,7 +323,7 @@
 						offset;
 					
 					/*-----Resize Image-----*/
-					if (base.options.fit_always){	// Fit always is enabled
+					if (base.options.fit_always || thisSlide.parents("li").hasClass("fit_always")){	// Fit always is enabled
 						if ((browserheight/browserwidth) > ratio){
 							resizeWidth();
 						} else {
